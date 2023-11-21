@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            margin: 100px auto;
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            background-color: palegreen;
+        }
+
+        .son {
+            width: 50px;
+            height: 50px;
+            margin-left: 25px;
+            margin-top: 25px;
+            background-color: paleturquoise;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+<script>
+    // 这里通过addEventListener(type, listener[, useCapture])这个方法来验证
+    // 验证一下事件捕获阶段：即addEventListener(type, listener[, useCapture])第三个参数如果是 true
+    var father = document.querySelector('.father');
+    var son = document.querySelector('.son');
+    son.addEventListener('click', function () {
+        alert('son');
+    }, false)
+    father.addEventListener('click', function () {
+        alert('father');
+    }, false)
+    // 当我们点击子盒子的时候，先出现父盒子的点击事件，然后在出现子盒子的点击事件，所以事件捕获就是：
+    // 由 DOM 最顶层节点开始，然后逐级向下传播到到最具体的元素接收的过程。
+    // 再来看看事件冒泡阶段，即addEventListener(type, listener[, useCapture])第三个参数如果是false，看看他们的执行顺序
+    // 当我们点击子盒子的时候，先出现子盒子的点击事件，然后在出现父盒子的点击事件，所以事件冒泡就是：事件开始时由最具
+    // 体的元素接收，然后逐级向上传播到到 DOM 最顶层节点的过程。
+</script>
+
+</html>
